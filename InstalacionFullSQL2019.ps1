@@ -10,7 +10,7 @@ New-Item -Path 'E:\Backups' -ItemType "directory"
 New-Item -Path 'E:\Backups\Diario' -ItemType "directory"
 New-Item -Path 'E:\Tempdb' -ItemType "directory"
 
-New-SmbShare -Name  "Diario" -Path "E:\Backups\Diario" -FullAccess "do\bkpsuser"
+New-SmbShare -Name  "Diario" -Path "E:\Backups\Diario" -FullAccess "dominio\UsuBackups"
 
 New-NetFirewallRule -DisplayName "AllowSQLConn" -Direction Inbound -LocalPort 1433 -Protocol TCP -Action Allow} 
 Write-Host "listo"
@@ -41,12 +41,10 @@ $ArgumentList += '/AGTSVCPASSWORD="*********"'
 $ArgumentList += '/ConfigurationFile="E:\Resultado.ini"'
 $ArgumentList += '/IAcceptSqlServerLicenseTerms'
 Start-Process  -FilePath "d:\setup.exe" -ArgumentList $ArgumentList -Wait
-#
-                                            
+
+#Fuera del servidor                                            
 Set-DbaSpn -SPN MSSQLSvc/SQLTestDBA.do.scba.gov.ar -ServiceAccount dominio\cuentaServicioSQL -Credential $credo
 Get-DbaSpn -ComputerName $SqlInstance -Credential $credo
-
-
 
 $pass = Read-Host "Ingrese contraseña de dominio\cuentasysadmin" -AsSecureString
 $credential = New-Object -TypeName System.Management.Automation.PSCredential ('dominio\cuentasysadmin', $pass)
