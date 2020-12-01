@@ -1,0 +1,14 @@
+Desde PC local:
+1. Crea Directorios en Servidor Destino
+2. Abre el 1433
+3. Configura el ConfigurationFile.ini según requerimiento del servidor.
+4. Copia el ini a usar para la instalación en el Servidor Destino.
+
+En el Servidor Destino:
+1. Asigna valor a los argumentos para la instalación.
+2. lnstala
+
+En la pc local(ya está la credencial creada):
+5. Configurar el SPN.
+6. Habilita la compresión de backups.
+7. Crea los sp para el plan de mantenimiento.
